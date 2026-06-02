@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -22,6 +22,10 @@ function Portrait({ className = '' }: { className?: string }) {
 }
 
 export default function Hero() {
+  const { scrollY } = useScroll()
+  const nameY = useTransform(scrollY, [0, 500], [0, -55])
+  const portraitY = useTransform(scrollY, [0, 500], [0, 28])
+
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden
       px-6 sm:px-10 lg:px-14 pt-24 sm:pt-20 pb-8 flex flex-col justify-between">
@@ -41,9 +45,9 @@ export default function Hero() {
       </motion.div>
 
       {/* name block */}
-      <div className="relative flex-1 flex flex-col justify-center
-        py-8 md:py-0">
-        <div className="relative">
+      <div className="relative flex-1 flex flex-col justify-center py-8 md:py-0">
+        {/* parallax wrapper for names */}
+        <motion.div style={{ y: nameY }} className="relative">
           <motion.span
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,16 +83,20 @@ export default function Hero() {
           >
             DAMAYANTI
           </motion.h1>
-        </div>
+        </motion.div>
 
-        {/* portrait: in-flow on mobile, absolute on desktop */}
+        {/* portrait: parallax wrapper (outer) + entrance animation (inner) */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
+          style={{ y: portraitY }}
           className="mt-10 md:mt-0 md:absolute md:top-0 md:right-0 md:z-20"
         >
-          <Portrait className="md:rotate-3" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
+          >
+            <Portrait className="md:rotate-3" />
+          </motion.div>
         </motion.div>
       </div>
 

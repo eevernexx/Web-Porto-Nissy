@@ -32,7 +32,7 @@ export default function Page() {
       <footer className="text-center py-7 text-[11px] tracking-widest
         uppercase text-cream bg-greige">
         designed by{' '}
-        <span className="text-paper">anissa damayanti</span>
+        <span className="text-paper">aryasatya muhammad aqsel</span>
       </footer>
     </>
   )

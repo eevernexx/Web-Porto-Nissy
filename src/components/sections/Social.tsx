@@ -1,19 +1,36 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { SOCIAL_LINKS } from '@/lib/data'
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
 export default function Social() {
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-10%' })
+
   return (
-    <section className="bg-paper px-6 sm:px-10 lg:px-14 py-16 sm:py-24">
-      <span className="font-hand text-pink-deep block mb-6 -rotate-2"
-        style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+    <section ref={ref} className="bg-paper px-6 sm:px-10 lg:px-14 py-16 sm:py-24">
+      <motion.span
+        className="font-hand text-pink-deep block mb-6 -rotate-2"
+        style={{ fontSize: 'clamp(28px,4vw,48px)' }}
+        initial={{ opacity: 0, x: -40 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.75, ease: EASE }}
+      >
         find me
-      </span>
+      </motion.span>
 
       <ul>
-        {SOCIAL_LINKS.map((link) => (
-          <li key={link.label} className="border-b border-ink/10">
+        {SOCIAL_LINKS.map((link, i) => (
+          <motion.li
+            key={link.label}
+            className="border-b border-ink/10"
+            initial={{ opacity: 0, x: -60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.08 + i * 0.09, ease: EASE }}
+          >
             <motion.a
               href={link.href}
               target="_blank"
@@ -41,7 +58,7 @@ export default function Social() {
                 &#8599;
               </motion.span>
             </motion.a>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </section>

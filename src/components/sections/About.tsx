@@ -1,20 +1,34 @@
 'use client'
 
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 function Photo({
   label,
   className = '',
   rotate = 0,
+  delay = 0,
+  inView,
+  fromX = 0,
+  fromY = 0,
 }: {
   label: string
   className?: string
   rotate?: number
+  delay?: number
+  inView: boolean
+  fromX?: number
+  fromY?: number
 }) {
   return (
-    <figure
+    <motion.figure
       className={`absolute bg-white p-2 pb-7 shadow-xl ${className}`}
-      style={{ transform: `rotate(${rotate}deg)` }}
+      initial={{ opacity: 0, scale: 0.78, x: fromX, y: fromY, rotate: rotate * 2.5 }}
+      animate={inView ? { opacity: 1, scale: 1, x: 0, y: 0, rotate } : {}}
+      transition={{ duration: 0.85, delay, ease: EASE }}
     >
       <div
         className="w-full bg-gradient-to-br from-pink-soft to-greige/40"
@@ -24,11 +38,14 @@ function Photo({
         font-hand text-ink-soft text-base">
         {label}
       </figcaption>
-    </figure>
+    </motion.figure>
   )
 }
 
 export default function About() {
+  const scrapRef = useRef<HTMLDivElement>(null)
+  const scrapInView = useInView(scrapRef, { once: true, margin: '-10%' })
+
   return (
     <section id="about" className="px-6 sm:px-10 lg:px-14 py-16 sm:py-24 scroll-mt-24">
       <ScrollReveal>
@@ -61,7 +78,7 @@ export default function About() {
           </div>
 
           {/* scrapbook column */}
-          <div className="relative min-h-[380px] sm:min-h-[460px]">
+          <div ref={scrapRef} className="relative min-h-[380px] sm:min-h-[460px]">
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none"
               aria-hidden
@@ -82,16 +99,28 @@ export default function About() {
               label="early work"
               rotate={-6}
               className="top-0 left-1 w-36 sm:w-44 z-10"
+              inView={scrapInView}
+              fromX={-65}
+              fromY={-25}
+              delay={0}
             />
             <Photo
               label="on set"
               rotate={5}
               className="top-14 right-1 w-36 sm:w-44 z-20"
+              inView={scrapInView}
+              fromX={65}
+              fromY={-25}
+              delay={0.18}
             />
             <Photo
               label="behind the scenes"
               rotate={-2}
               className="bottom-0 left-1/4 w-36 sm:w-44 z-30"
+              inView={scrapInView}
+              fromX={20}
+              fromY={70}
+              delay={0.34}
             />
           </div>
         </div>

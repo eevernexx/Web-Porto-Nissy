@@ -1,9 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { SKILLS } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import type { SkillChip } from '@/lib/types'
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 function chipClasses(skill: SkillChip): string {
   return cn(
@@ -20,7 +23,20 @@ function chipClasses(skill: SkillChip): string {
   )
 }
 
+// Variant-based entrance so the stagger delay doesn't fight the whileHover spring
+const chipVariants = {
+  hidden: { opacity: 0, y: 22 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.52, delay: i * 0.045, ease: EASE },
+  }),
+}
+
 export default function Skills() {
+  const gridRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(gridRef, { once: true, margin: '-10%' })
+
   return (
     <section id="skills" className="relative overflow-hidden scroll-mt-24 px-6 sm:px-10 lg:px-14
       py-16 sm:py-28">
@@ -41,12 +57,17 @@ export default function Skills() {
 
       {/* chip grid */}
       <div
+        ref={gridRef}
         className="relative z-[1] grid grid-cols-2 md:grid-cols-4
           gap-3 sm:gap-4 auto-rows-[120px] sm:auto-rows-[140px]"
       >
-        {SKILLS.map((skill) => (
+        {SKILLS.map((skill, index) => (
           <motion.div
             key={skill.label}
+            custom={index}
+            variants={chipVariants}
+            initial="hidden"
+            animate={inView ? 'show' : 'hidden'}
             whileHover={{ scale: 1.04, rotate: -1 }}
             transition={{ type: 'spring', stiffness: 300, damping: 18 }}
             data-cur="skill"
