@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ANISSA DAMAYANTI  ·  Editorial portfolio design system
+   Tailwind v4 token layer ( @theme generates the utilities )
+   ============================================================ */
+
+@theme {
+  /* color tokens -> bg-paper, text-ink, border-pink-deep, ... */
+  --color-paper:     #EBE5D8;
+  --color-cream:     #F3EEE3;
+  --color-greige:    #A89E8C;
+  --color-pink:      #F0A0C4;
+  --color-pink-deep: #E57BA8;
+  --color-pink-soft: #F8CDDF;
+  --color-ink:       #272320;
+  --color-ink-soft:  #5C554D;
+}
+
+@theme inline {
+  /* font tokens -> font-display, font-hand, font-body, font-punch.
+     inline so the utility references the live next/font variable. */
+  --font-display: var(--font-fredoka), system-ui, sans-serif;
+  --font-hand:    var(--font-caveat), cursive;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+  --font-punch:   var(--font-archivo), system-ui, sans-serif;
+}
+
+/* raw CSS variables for use inside inline style / gradients */
+:root {
+  --paper:     #EBE5D8;
+  --cream:     #F3EEE3;
+  --greige:    #A89E8C;
+  --pink:      #F0A0C4;
+  --pink-deep: #E57BA8;
+  --pink-soft: #F8CDDF;
+  --ink:       #272320;
+  --ink-soft:  #5C554D;
+}
+
+html {
+  background: var(--greige);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Grain overlay via SVG noise filter */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.055;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Touch devices: restore the native cursor (custom cursor is hidden) */
+@media (hover: none) {
+  body { cursor: auto; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
