@@ -8,7 +8,7 @@ const WHATSAPP = 'https://wa.me/6283157110459'
 
 export default function Contact() {
   return (
-    <section className="px-6 sm:px-10 lg:px-14 py-16 sm:py-24">
+    <section id="contact" className="px-6 sm:px-10 lg:px-14 py-16 sm:py-24 scroll-mt-24">
       <ScrollReveal>
         <div className="bg-cream rounded-md shadow-2xl p-8 sm:p-12 lg:p-16
           grid md:grid-cols-2 gap-12 md:gap-16 items-center">

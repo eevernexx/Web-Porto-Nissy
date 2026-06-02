@@ -9,7 +9,7 @@ const CROSSHATCH =
 
 export default function Projects() {
   return (
-    <section className="px-6 sm:px-10 lg:px-14 py-16 sm:py-24">
+    <section id="work" className="px-6 sm:px-10 lg:px-14 py-16 sm:py-24 scroll-mt-24">
       <ScrollReveal>
         <header className="mb-10 sm:mb-14">
           <span className="font-hand text-pink-deep block -rotate-2"

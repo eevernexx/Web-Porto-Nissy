@@ -22,7 +22,7 @@ function chipClasses(skill: SkillChip): string {
 
 export default function Skills() {
   return (
-    <section className="relative overflow-hidden px-6 sm:px-10 lg:px-14
+    <section id="skills" className="relative overflow-hidden scroll-mt-24 px-6 sm:px-10 lg:px-14
       py-16 sm:py-28">
       {/* overlay headline */}
       <div

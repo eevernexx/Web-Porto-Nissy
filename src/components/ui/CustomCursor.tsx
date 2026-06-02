@@ -22,8 +22,8 @@ export default function CustomCursor() {
     let raf: number
     const loop = () => {
       const p = pos.current
-      p.rx += (p.mx - p.rx) * 0.16
-      p.ry += (p.my - p.ry) * 0.16
+      p.rx += (p.mx - p.rx) * 0.35
+      p.ry += (p.my - p.ry) * 0.35
       if (ringRef.current) {
         ringRef.current.style.transform =
           `translate(${p.rx}px,${p.ry}px) translate(-50%,-50%)`
@@ -70,7 +70,8 @@ export default function CustomCursor() {
         ref={ringRef}
         aria-hidden
         className={`fixed top-0 left-0 rounded-full pointer-events-none
-          z-[9999] mix-blend-difference border transition-all duration-300
+          z-[9999] mix-blend-difference border duration-300 ease-out
+          transition-[width,height,background-color,border-color]
           hidden md:flex items-center justify-center
           ${
             hovered

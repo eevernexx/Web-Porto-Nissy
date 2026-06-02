@@ -23,8 +23,8 @@ function Portrait({ className = '' }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden
-      px-6 sm:px-10 lg:px-14 pt-10 pb-8 flex flex-col justify-between">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden
+      px-6 sm:px-10 lg:px-14 pt-24 sm:pt-20 pb-8 flex flex-col justify-between">
       {/* top handwritten row */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -60,8 +60,8 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
             className="font-display font-semibold text-pink leading-[0.85]
-              tracking-tight"
-            style={{ fontSize: 'clamp(46px,14vw,220px)' }}
+              tracking-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(46px,13vw,168px)' }}
           >
             ANISSA
           </motion.h1>
@@ -71,10 +71,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
             className="font-display font-semibold text-pink leading-[0.85]
-              tracking-tight"
+              tracking-tight whitespace-nowrap"
             style={{
-              fontSize: 'clamp(46px,14vw,220px)',
-              marginLeft: 'clamp(20px,8vw,140px)',
+              fontSize: 'clamp(46px,13vw,168px)',
+              marginLeft: 'clamp(16px,5vw,64px)',
             }}
           >
             DAMAYANTI
