@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 import { SKILLS } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import type { SkillChip } from '@/lib/types'
@@ -38,27 +39,26 @@ export default function Skills() {
   const inView = useInView(gridRef, { once: true, margin: '-10%' })
 
   return (
-    <section id="skills" className="relative overflow-hidden scroll-mt-24 px-6 sm:px-10 lg:px-14
+    <section id="skills" className="scroll-mt-24 px-6 sm:px-10 lg:px-14
       py-16 sm:py-28">
-      {/* overlay headline */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-[3]
-          flex items-center justify-center -rotate-[5deg]"
-      >
-        <span
-          className="font-display font-semibold text-pink whitespace-nowrap
-            opacity-90"
-          style={{ fontSize: 'clamp(40px,9vw,120px)' }}
-        >
-          skills <span className="font-hand text-pink-deep">&amp;works</span>
-        </span>
-      </div>
+      {/* editorial header */}
+      <ScrollReveal>
+        <header className="mb-10 sm:mb-14">
+          <span className="font-hand text-pink-deep block -rotate-2"
+            style={{ fontSize: 'clamp(24px,3vw,40px)' }}>
+            what I bring
+          </span>
+          <h2 className="font-display font-semibold text-pink leading-none"
+            style={{ fontSize: 'clamp(48px,10vw,128px)' }}>
+            skills.
+          </h2>
+        </header>
+      </ScrollReveal>
 
       {/* chip grid */}
       <div
         ref={gridRef}
-        className="relative z-[1] grid grid-cols-2 md:grid-cols-4
+        className="grid grid-cols-2 md:grid-cols-4
           gap-3 sm:gap-4 auto-rows-[120px] sm:auto-rows-[140px]"
       >
         {SKILLS.map((skill, index) => (

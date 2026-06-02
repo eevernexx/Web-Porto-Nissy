@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Fredoka, Caveat, Inter, Archivo } from 'next/font/google'
+import { Fredoka, Caveat, Archivo } from 'next/font/google'
 import './globals.css'
 
 /* FONT SETUP
-   Clash Display / General Sans were not provided as local .woff2 files,
-   so the display + punch faces fall back to Fredoka / Archivo from
-   next/font/google ( logged here so the fallback is not silent ). */
+   Display + punch faces use Fredoka / Archivo from next/font/google.
+   Body copy uses the Apple system font stack (SF Pro — the iOS look),
+   defined directly in globals.css, so no body web font is loaded. */
 const fontDisplay = Fredoka({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -17,12 +17,6 @@ const fontHand = Caveat({
   subsets: ['latin'],
   weight: ['500', '600', '700'],
   variable: '--font-caveat',
-  display: 'swap',
-})
-
-const fontBody = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
   display: 'swap',
 })
 
@@ -56,7 +50,6 @@ export default function RootLayout({
       className={[
         fontDisplay.variable,
         fontHand.variable,
-        fontBody.variable,
         fontPunch.variable,
       ].join(' ')}
     >

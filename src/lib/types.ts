@@ -2,8 +2,8 @@ export interface Project {
   id: string
   title: string
   category: string
+  image: string
   span?: 'full' | 'half'
-  placeholder: string
 }
 
 export interface SocialLink {

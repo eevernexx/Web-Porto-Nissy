@@ -3,16 +3,15 @@ import type { Project, SocialLink, SkillChip } from '@/lib/types'
 export const PROFILE = {
   name: 'Anissa Damayanti',
   location: 'Bandung, Indonesia',
-  phone: '083157110459',
+  phone: '+62 83157110459',
   role: 'Graphic Designer / Content Creator / Visual Storyteller',
 }
 
 export const PROJECTS: Project[] = [
-  { id: 'p1', title: 'Visual Identity System',  category: 'Brand Identity',   span: 'half', placeholder: 'Branding · cover image' },
-  { id: 'p2', title: 'Instagram Content Suite', category: 'Social Design',    span: 'half', placeholder: 'Social Media · grid' },
-  { id: 'p3', title: 'Campaign & Storytelling', category: 'Content Creation', span: 'full', placeholder: 'Content Creation · feature' },
-  { id: 'p4', title: 'Template & Layout Kit',   category: 'Canva Projects',   span: 'half', placeholder: 'Canva · template set' },
-  { id: 'p5', title: 'Editorial Poster Series', category: 'Visual Design',    span: 'half', placeholder: 'Visual Design · poster' },
+  { id: 'p1', title: '3D Modelling',    category: 'Three · Dimensional', image: '/media/works-3d-modelling.png',    span: 'half' },
+  { id: 'p2', title: 'Drawing',         category: 'Digital · Sketch',    image: '/media/works-drawing.png',         span: 'half' },
+  { id: 'p3', title: 'Graphics Design', category: 'Brand · Layout',      image: '/media/works-graphics-design.png', span: 'half' },
+  { id: 'p4', title: 'Illustration',    category: 'Character · Art',     image: '/media/works-ilustrasi.png',       span: 'half' },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -23,16 +22,18 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { label: 'Canva',     href: 'https://canva.link/0qevxabb7d4v4gd' },
 ]
 
+/* Ordered so each row of the 4-column desktop grid sums to exactly 4 cells
+   (wide = 2). This keeps the grid a clean, hole-free rectangle. */
 export const SKILLS: SkillChip[] = [
-  { label: 'Graphic Design',      variant: 'pink',    span: 'wide' },
+  { label: 'Graphic Design',      variant: 'pink',    span: 'wide' }, // row 1
   { label: 'Canva',               variant: 'ink' },
   { label: 'Branding',            variant: 'default' },
-  { label: 'Content Creation',    variant: 'default' },
+  { label: 'Content Creation',    variant: 'default' },               // row 2
   { label: 'Social Media Design', variant: 'pink' },
   { label: 'Adobe Photoshop',     variant: 'default', span: 'wide' },
-  { label: 'Adobe Illustrator',   variant: 'ink' },
+  { label: 'Adobe Illustrator',   variant: 'ink' },                   // row 3
   { label: 'Video Editing',       variant: 'default' },
   { label: 'Visual Storytelling', variant: 'pink',    span: 'wide' },
-  { label: 'moodboard',           variant: 'photo',   span: 'tall' },
-  { label: 'type specimen',       variant: 'photo',   span: 'tall' },
+  { label: 'moodboard',           variant: 'photo',   span: 'wide' }, // row 4
+  { label: 'type specimen',       variant: 'photo',   span: 'wide' },
 ]

@@ -30,7 +30,7 @@ function Photo({
 }) {
   return (
     <motion.figure
-      className={`absolute bg-white p-2 pb-7 shadow-xl ${className}`}
+      className={`absolute bg-white p-2 shadow-xl ${className}`}
       initial={{ opacity: 0, scale: 0.78, x: fromX, y: fromY, rotate: rotate * 2.5 }}
       animate={inView ? { opacity: 1, scale: 1, x: 0, y: 0, rotate } : {}}
       transition={{ duration: 0.85, delay, ease: EASE }}
@@ -61,10 +61,6 @@ function Photo({
           />
         )}
       </div>
-      <figcaption className="absolute bottom-1 left-0 right-0 text-center
-        font-hand text-ink-soft text-base">
-        {label}
-      </figcaption>
     </motion.figure>
   )
 }

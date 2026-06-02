@@ -24,7 +24,7 @@ const NAME_3D = {
 function Portrait() {
   return (
     <motion.div
-      style={{ width: 'clamp(190px,23vw,320px)' }}
+      style={{ width: 'clamp(178px,21vw,296px)' }}
       animate={{ y: [0, -12, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
     >
@@ -86,7 +86,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
             className="font-display font-semibold text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
-            style={{ fontSize: 'clamp(46px,13vw,168px)', ...NAME_3D }}
+            style={{ fontSize: 'clamp(44px,10.5vw,128px)', ...NAME_3D }}
           >
             ANISSA
           </motion.h1>
@@ -98,8 +98,8 @@ export default function Hero() {
             className="font-display font-semibold text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
             style={{
-              fontSize: 'clamp(46px,13vw,168px)',
-              marginLeft: 'clamp(16px,5vw,64px)',
+              fontSize: 'clamp(44px,10.5vw,128px)',
+              marginLeft: 'clamp(10px,3vw,40px)',
               ...NAME_3D,
             }}
           >
