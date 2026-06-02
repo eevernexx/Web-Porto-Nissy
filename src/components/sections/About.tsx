@@ -1,13 +1,17 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
+type Media = { type: 'video' | 'image'; src: string }
+
 function Photo({
   label,
+  media,
   className = '',
   rotate = 0,
   delay = 0,
@@ -16,6 +20,7 @@ function Photo({
   fromY = 0,
 }: {
   label: string
+  media: Media
   className?: string
   rotate?: number
   delay?: number
@@ -31,9 +36,31 @@ function Photo({
       transition={{ duration: 0.85, delay, ease: EASE }}
     >
       <div
-        className="w-full bg-gradient-to-br from-pink-soft to-greige/40"
+        className="relative w-full overflow-hidden bg-greige/15"
         style={{ aspectRatio: '4 / 5' }}
-      />
+      >
+        {media.type === 'video' ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={label}
+          >
+            <source src={media.src} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            src={media.src}
+            alt={label}
+            fill
+            sizes="(max-width: 640px) 40vw, 176px"
+            className="object-cover"
+          />
+        )}
+      </div>
       <figcaption className="absolute bottom-1 left-0 right-0 text-center
         font-hand text-ink-soft text-base">
         {label}
@@ -97,6 +124,7 @@ export default function About() {
 
             <Photo
               label="early work"
+              media={{ type: 'video', src: '/media/early-work.mp4' }}
               rotate={-6}
               className="top-0 left-1 w-36 sm:w-44 z-10"
               inView={scrapInView}
@@ -106,6 +134,7 @@ export default function About() {
             />
             <Photo
               label="on set"
+              media={{ type: 'video', src: '/media/on-set.mp4' }}
               rotate={5}
               className="top-14 right-1 w-36 sm:w-44 z-20"
               inView={scrapInView}
@@ -115,6 +144,7 @@ export default function About() {
             />
             <Photo
               label="behind the scenes"
+              media={{ type: 'image', src: '/media/behind-the-scenes.jpeg' }}
               rotate={-2}
               className="bottom-0 left-1/4 w-36 sm:w-44 z-30"
               inView={scrapInView}

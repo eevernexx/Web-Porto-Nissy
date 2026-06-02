@@ -1,23 +1,44 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-function Portrait({ className = '' }: { className?: string }) {
+/* Layered text-shadow that extrudes the display name into a 3D block.
+   Offsets are in `em` so the depth scales with the responsive font size. */
+const NAME_3D = {
+  textShadow: [
+    '0.014em 0.014em 0 #E57BA8',
+    '0.028em 0.028em 0 #df7197',
+    '0.042em 0.042em 0 #d8678d',
+    '0.056em 0.056em 0 #cf5a80',
+    '0.07em 0.07em 0 #c44f74',
+    '0.084em 0.084em 0 #b54669',
+    '0.05em 0.12em 0.06em rgba(90,28,54,0.33)',
+  ].join(', '),
+}
+
+/* Hero portrait: the photo ships with its own scrapbook framing on a
+   transparent background, so it floats directly on the paper. */
+function Portrait() {
   return (
-    <div
-      className={`rounded-md border-2 border-dashed border-pink-deep/50
-        bg-gradient-to-br from-pink-soft to-cream
-        flex items-center justify-center text-center p-4 ${className}`}
-      style={{ width: 'clamp(180px,22vw,300px)', aspectRatio: '3 / 4' }}
+    <motion.div
+      style={{ width: 'clamp(190px,23vw,320px)' }}
+      animate={{ y: [0, -12, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
     >
-      <span className="font-hand text-pink-deep text-lg leading-tight">
-        Portrait of Anissa
-        <br />
-        drop photo here
-      </span>
-    </div>
+      <Image
+        src="/media/anissa-portrait.png"
+        alt="Portrait of Anissa Damayanti"
+        width={1080}
+        height={1350}
+        priority
+        sizes="(max-width: 768px) 60vw, 23vw"
+        className="w-full h-auto select-none pointer-events-none
+          drop-shadow-[0_22px_45px_rgba(229,123,168,0.45)]"
+      />
+    </motion.div>
   )
 }
 
@@ -65,7 +86,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
             className="font-display font-semibold text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
-            style={{ fontSize: 'clamp(46px,13vw,168px)' }}
+            style={{ fontSize: 'clamp(46px,13vw,168px)', ...NAME_3D }}
           >
             ANISSA
           </motion.h1>
@@ -79,23 +100,25 @@ export default function Hero() {
             style={{
               fontSize: 'clamp(46px,13vw,168px)',
               marginLeft: 'clamp(16px,5vw,64px)',
+              ...NAME_3D,
             }}
           >
             DAMAYANTI
           </motion.h1>
         </motion.div>
 
-        {/* portrait: parallax wrapper (outer) + entrance animation (inner) */}
+        {/* portrait: parallax (outer) + entrance/tilt (middle) + float (inner) */}
         <motion.div
           style={{ y: portraitY }}
-          className="mt-10 md:mt-0 md:absolute md:top-0 md:right-0 md:z-20"
+          className="mt-10 md:mt-0 md:absolute md:top-0 md:right-0 md:z-20
+            flex justify-center md:block"
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, rotate: 0 }}
+            animate={{ opacity: 1, y: 0, rotate: 2 }}
             transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
           >
-            <Portrait className="md:rotate-3" />
+            <Portrait />
           </motion.div>
         </motion.div>
       </div>
