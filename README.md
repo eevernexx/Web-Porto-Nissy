@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Anissa Damayanti, Portfolio
+
+A personal portfolio site for **Anissa Damayanti**, a Graphic Designer, Content Creator, and Visual Storyteller based in Bandung, Indonesia. The site presents her selected works, skills, and contact links inside a warm, paper textured interface with smooth scrolling, ambient motion, and a glass styled navigation.
+
+> Designed and built by Aryasatya Muhammad Aqsel.
+
+## Tech Stack
+
+| Area | Choice |
+| :--- | :--- |
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
+| Language | TypeScript |
+| UI library | React 19 |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) |
+| Animation | [Framer Motion](https://www.framer.com/motion/), [GSAP](https://gsap.com) |
+| Smooth scroll | [Lenis](https://lenis.darkroom.engineering/) |
+| Fonts | Fredoka, Caveat, and Archivo via `next/font`, plus the Apple system stack for body copy |
+| Deployment | [Vercel](https://vercel.com) |
+
+## Features
+
+- **Single page experience** composed of focused sections: Hero, About, Statement, Works, Skills, Social, and Contact.
+- **Smooth, inertia based scrolling** powered by Lenis, with a scroll progress indicator.
+- **Scroll driven motion** for reveals, parallax, and a marquee strip in the works gallery.
+- **Interactive works gallery** with a click to preview lightbox.
+- **Custom cursor** and magnetic buttons for a tactile feel.
+- **Ambient background** and an optional liquid glass music toggle.
+- **Responsive layout** tuned for mobile through large desktop.
+- **SEO and social metadata** configured in the root layout, including Open Graph tags.
+
+## Project Structure
+
+```
+src/
+  app/
+    layout.tsx        Root layout, fonts, and metadata
+    page.tsx          Page composition (section order)
+    globals.css       Theme tokens and base styles
+  components/
+    sections/         Hero, About, Statement, Projects, Skills, Social, Contact
+    ui/               Navbar, CustomCursor, MagneticButton, MusicToggle,
+                      ScrollProgress, ScrollReveal, AmbientBackground, WorkLightbox
+  lib/
+    data.ts           Profile, projects, social links, and skills content
+    types.ts          Shared TypeScript types
+    useLenis.ts       Smooth scroll hook
+    useParallax.ts    Parallax helper
+    utils.ts          Class name helper (clsx + tailwind-merge)
+public/
+  media/              Portrait, work images, video, and audio assets
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- [Node.js](https://nodejs.org) 20 or newer
+- npm (bundled with Node.js)
+
+### Installation
+
+```bash
+git clone https://github.com/eevernexx/Web-Porto-Nissy.git
+cd Web-Porto-Nissy
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. The page reloads automatically as you edit files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Script | Description |
+| :--- | :--- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create an optimized production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Most site content lives in [src/lib/data.ts](src/lib/data.ts):
 
-## Deploy on Vercel
+- `PROFILE`: name, location, phone, and role
+- `PROJECTS`: the works gallery entries
+- `SOCIAL_LINKS`: external profile links
+- `SKILLS`: the skills grid
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Media assets (portrait, work previews, video, and audio) live in [public/media/](public/media/).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The project is configured for [Vercel](https://vercel.com) via [vercel.json](vercel.json). Push to the connected repository, or import the project in the Vercel dashboard, and it deploys with zero additional configuration.
+
+## License
+
+This is a personal portfolio project. All artwork, photography, and brand assets belong to Anissa Damayanti and may not be reused without permission.

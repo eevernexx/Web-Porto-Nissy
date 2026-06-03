@@ -95,7 +95,7 @@ function WorkCard({
           {String(index + 1).padStart(2, '0')}
         </span>
 
-        {/* "click to preview" pill — fades in on hover */}
+        {/* "click to preview" pill, fades in on hover */}
         <span
           aria-hidden
           className="absolute top-4 right-5 rounded-full bg-white/90 text-ink
@@ -166,7 +166,7 @@ export default function Projects() {
           </motion.h2>
           <p className="font-hand text-ink-soft mt-1 -rotate-1"
             style={{ fontSize: 'clamp(16px,2vw,24px)' }}>
-            psst — tap a piece to see it up close.
+            psst, tap a piece to see it up close.
           </p>
         </header>
       </ScrollReveal>

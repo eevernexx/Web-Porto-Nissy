@@ -9,7 +9,7 @@ export const PROFILE = {
 
 export const PROJECTS: Project[] = [
   { id: 'p1', title: '3D Modelling',    category: 'Three · Dimensional', image: '/media/works-3d-modelling.png',    blurb: 'Playful 3D scenes and props, modelled and lit with a soft, storybook finish.',        span: 'half' },
-  { id: 'p2', title: 'Drawing',         category: 'Digital · Sketch',    image: '/media/works-drawing.png',         blurb: 'Loose digital sketches — quick studies of character, mood and movement.',              span: 'half' },
+  { id: 'p2', title: 'Drawing',         category: 'Digital · Sketch',    image: '/media/works-drawing.png',         blurb: 'Loose digital sketches, quick studies of character, mood and movement.',               span: 'half' },
   { id: 'p3', title: 'Graphics Design', category: 'Brand · Layout',      image: '/media/works-graphics-design.png', blurb: 'Brand systems, layouts and social content built to be felt before they are read.',     span: 'half' },
   { id: 'p4', title: 'Illustration',    category: 'Character · Art',     image: '/media/works-ilustrasi.png',       blurb: 'Warm character illustration with expressive linework and a cosy colour story.',         span: 'half' },
 ]

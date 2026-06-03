@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 /* Each equalizer bar has its own keyframe set + duration so the four bars
-   never move in lockstep — it reads like a real sound meter. */
+   never move in lockstep, so it reads like a real sound meter. */
 const BARS = [
   { keys: [0.35, 1, 0.5, 0.85, 0.35], dur: 0.95 },
   { keys: [0.6, 0.3, 1, 0.45, 0.6], dur: 1.15 },
@@ -45,7 +45,7 @@ export default function MusicToggle() {
     try {
       await audio.play()
     } catch {
-      // Autoplay/permission was refused — leave it paused.
+      // Autoplay/permission was refused, so leave it paused.
       setPlaying(false)
     }
   }
@@ -77,14 +77,14 @@ export default function MusicToggle() {
           shadow-[0_8px_30px_rgba(39,35,32,0.12),inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_2px_rgba(255,255,255,0.2)]
           transition-transform duration-300 hover:scale-105 active:scale-95"
       >
-        {/* specular top sheen — same wet-glass highlight as the navbar */}
+        {/* specular top sheen, same wet-glass highlight as the navbar */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-3 top-0 h-1/2
             rounded-full bg-gradient-to-b from-white/60 to-transparent opacity-70"
         />
 
-        {/* equalizer bars — animate while playing, rest low when muted */}
+        {/* equalizer bars: animate while playing, rest low when muted */}
         <span
           aria-hidden
           className="relative flex items-end justify-center gap-[3px] h-[18px]"

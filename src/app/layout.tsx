@@ -4,7 +4,7 @@ import './globals.css'
 
 /* FONT SETUP
    Display + punch faces use Fredoka / Archivo from next/font/google.
-   Body copy uses the Apple system font stack (SF Pro — the iOS look),
+   Body copy uses the Apple system font stack (SF Pro, the iOS look),
    defined directly in globals.css, so no body web font is loaded. */
 const fontDisplay = Fredoka({
   subsets: ['latin'],

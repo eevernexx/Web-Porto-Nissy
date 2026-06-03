@@ -42,7 +42,7 @@ function Photo({
       transition={{ duration: 0.85, delay, ease: EASE }}
       whileHover={{ scale: 1.05, rotate: rotate * 0.4, zIndex: 40 }}
     >
-      {/* idle bob — kept on an inner layer so it never fights the entrance */}
+      {/* idle bob, kept on an inner layer so it never fights the entrance */}
       <motion.div
         animate={inView ? { y: [0, -float, 0] } : {}}
         transition={{

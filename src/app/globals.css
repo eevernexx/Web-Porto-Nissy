@@ -20,7 +20,7 @@
 @theme inline {
   /* font tokens -> font-display, font-hand, font-body, font-punch.
      inline so the utility references the live next/font variable.
-     Body uses the Apple system font stack (SF Pro on iOS/macOS — the
+     Body uses the Apple system font stack (SF Pro on iOS/macOS, the
      iPhone "iOS 26" look) and degrades gracefully on other platforms. */
   --font-display: var(--font-fredoka), system-ui, sans-serif;
   --font-hand:    var(--font-caveat), cursive;
@@ -49,7 +49,7 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  /* Apple system font (SF Pro) — the iPhone / iOS 26 reading face. */
+  /* Apple system font (SF Pro), the iPhone / iOS 26 reading face. */
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;

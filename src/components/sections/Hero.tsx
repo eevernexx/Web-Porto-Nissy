@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-/* Flat display name — no 3D extrusion. A single soft shadow just lifts the
+/* Flat display name, no 3D extrusion. A single soft shadow just lifts the
    letters off the paper so they stay legible without any block depth. */
 const NAME_FLAT = {
   textShadow: '0 0.03em 0.05em rgba(229,123,168,0.25)',

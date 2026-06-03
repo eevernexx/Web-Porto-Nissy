@@ -54,7 +54,7 @@ export default function Navbar() {
           backdrop-blur-[6px] backdrop-saturate-[1.7] backdrop-brightness-[1.04]
           shadow-[0_8px_30px_rgba(39,35,32,0.12),inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_2px_rgba(255,255,255,0.2)]"
       >
-        {/* specular top sheen — the wet-glass highlight */}
+        {/* specular top sheen, the wet-glass highlight */}
         <span
           aria-hidden
           className="pointer-events-none absolute inset-x-4 top-0 h-1/2

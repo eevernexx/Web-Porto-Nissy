@@ -71,7 +71,7 @@ export default function WorkLightbox({
           &#215;
         </button>
 
-        {/* artwork — contained so the full piece is visible */}
+        {/* artwork, contained so the full piece is visible */}
         <div className="relative w-full bg-ink/90"
           style={{ aspectRatio: '4 / 3' }}>
           <Image
