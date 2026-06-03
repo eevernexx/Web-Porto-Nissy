@@ -3,6 +3,7 @@
 import { useLenis } from '@/lib/useLenis'
 import CustomCursor from '@/components/ui/CustomCursor'
 import Navbar from '@/components/ui/Navbar'
+import MusicToggle from '@/components/ui/MusicToggle'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import AmbientBackground from '@/components/ui/AmbientBackground'
 import Hero from '@/components/sections/Hero'
@@ -20,6 +21,7 @@ export default function Page() {
     <>
       <CustomCursor />
       <Navbar />
+      <MusicToggle />
       <ScrollProgress />
       <main className="relative max-w-[1240px] mx-auto bg-paper">
         <AmbientBackground />

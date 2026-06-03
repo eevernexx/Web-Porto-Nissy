@@ -5,18 +5,10 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-/* Layered text-shadow that extrudes the display name into a 3D block.
-   Offsets are in `em` so the depth scales with the responsive font size. */
-const NAME_3D = {
-  textShadow: [
-    '0.014em 0.014em 0 #E57BA8',
-    '0.028em 0.028em 0 #df7197',
-    '0.042em 0.042em 0 #d8678d',
-    '0.056em 0.056em 0 #cf5a80',
-    '0.07em 0.07em 0 #c44f74',
-    '0.084em 0.084em 0 #b54669',
-    '0.05em 0.12em 0.06em rgba(90,28,54,0.33)',
-  ].join(', '),
+/* Flat display name — no 3D extrusion. A single soft shadow just lifts the
+   letters off the paper so they stay legible without any block depth. */
+const NAME_FLAT = {
+  textShadow: '0 0.03em 0.05em rgba(229,123,168,0.25)',
 }
 
 /* Hero portrait: the photo ships with its own scrapbook framing on a
@@ -86,7 +78,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
             className="font-display font-normal text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
-            style={{ fontSize: 'clamp(44px,10.5vw,128px)', ...NAME_3D }}
+            style={{ fontSize: 'clamp(44px,10.5vw,128px)', ...NAME_FLAT }}
           >
             ANISSA
           </motion.h1>
@@ -100,7 +92,7 @@ export default function Hero() {
             style={{
               fontSize: 'clamp(44px,10.5vw,128px)',
               marginLeft: 'clamp(10px,3vw,40px)',
-              ...NAME_3D,
+              ...NAME_FLAT,
             }}
           >
             DAMAYANTI
