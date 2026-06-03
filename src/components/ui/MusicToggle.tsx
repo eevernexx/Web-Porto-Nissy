@@ -29,6 +29,7 @@ export default function MusicToggle() {
     const onPause = () => setPlaying(false)
     audio.addEventListener('play', onPlay)
     audio.addEventListener('pause', onPause)
+    audio.play().catch(() => {})
     return () => {
       audio.removeEventListener('play', onPlay)
       audio.removeEventListener('pause', onPause)
