@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import WorkLightbox from '@/components/ui/WorkLightbox'
 import { PROJECTS } from '@/lib/data'
 import type { Project } from '@/lib/types'
 
@@ -12,8 +13,16 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 /* A single work tile.
    – dramatic alternating slide-in entrance (left / right + rotate + scale)
    – continuous scroll-linked parallax + zoom on the image inside the frame
-   – hover lift + arrow reveal */
-function WorkCard({ project, index }: { project: Project; index: number }) {
+   – hover lift + "preview" reveal; click / Enter opens the lightbox */
+function WorkCard({
+  project,
+  index,
+  onOpen,
+}: {
+  project: Project
+  index: number
+  onOpen: (p: Project) => void
+}) {
   const ref = useRef<HTMLElement>(null)
   const fromLeft = index % 2 === 0
 
@@ -28,6 +37,16 @@ function WorkCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       ref={ref}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open preview of ${project.title}`}
+      onClick={() => onOpen(project)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpen(project)
+        }
+      }}
       initial={{
         opacity: 0,
         x: fromLeft ? -110 : 110,
@@ -39,9 +58,11 @@ function WorkCard({ project, index }: { project: Project; index: number }) {
       viewport={{ once: true, margin: '-12%' }}
       transition={{ duration: 1.05, ease: EASE }}
       whileHover={{ y: -12 }}
-      data-cur="view"
+      data-cur="preview"
       className="group relative rounded-2xl overflow-hidden bg-cream shadow-xl
-        cursor-none will-change-transform"
+        cursor-none will-change-transform outline-none
+        focus-visible:ring-2 focus-visible:ring-pink-deep focus-visible:ring-offset-2
+        focus-visible:ring-offset-paper"
     >
       <div className="relative overflow-hidden" style={{ aspectRatio: '16 / 10' }}>
         {/* parallax / zoom layer (over-scanned so edges never reveal) */}
@@ -54,7 +75,8 @@ function WorkCard({ project, index }: { project: Project; index: number }) {
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-700
+              ease-out group-hover:scale-105"
           />
         </motion.div>
 
@@ -71,6 +93,17 @@ function WorkCard({ project, index }: { project: Project; index: number }) {
             text-white/90 text-lg sm:text-xl drop-shadow-md select-none"
         >
           {String(index + 1).padStart(2, '0')}
+        </span>
+
+        {/* "click to preview" pill — fades in on hover */}
+        <span
+          aria-hidden
+          className="absolute top-4 right-5 rounded-full bg-white/90 text-ink
+            text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest
+            px-3 py-1.5 opacity-0 -translate-y-1 transition-all duration-500
+            ease-out group-hover:opacity-100 group-hover:translate-y-0"
+        >
+          Preview
         </span>
 
         {/* caption */}
@@ -103,6 +136,8 @@ function WorkCard({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [active, setActive] = useState<Project | null>(null)
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -129,6 +164,10 @@ export default function Projects() {
           >
             <span style={{ fontSize: 'clamp(48px,10vw,128px)' }}>works.</span>
           </motion.h2>
+          <p className="font-hand text-ink-soft mt-1 -rotate-1"
+            style={{ fontSize: 'clamp(16px,2vw,24px)' }}>
+            psst — tap a piece to see it up close.
+          </p>
         </header>
       </ScrollReveal>
 
@@ -147,9 +186,15 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {PROJECTS.map((project, i) => (
-          <WorkCard key={project.id} project={project} index={i} />
+          <WorkCard key={project.id} project={project} index={i} onOpen={setActive} />
         ))}
       </div>
+
+      <AnimatePresence>
+        {active && (
+          <WorkLightbox project={active} onClose={() => setActive(null)} />
+        )}
+      </AnimatePresence>
     </section>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import { SKILLS } from '@/lib/data'
 import { cn } from '@/lib/utils'
@@ -38,9 +38,16 @@ export default function Skills() {
   const gridRef = useRef<HTMLDivElement>(null)
   const inView = useInView(gridRef, { once: true, margin: '-10%' })
 
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const headX = useTransform(scrollYProgress, [0, 1], [40, -40])
+
   return (
-    <section id="skills" className="scroll-mt-24 px-6 sm:px-10 lg:px-14
-      py-16 sm:py-28">
+    <section ref={sectionRef} id="skills" className="scroll-mt-24 px-6 sm:px-10 lg:px-14
+      py-16 sm:py-28 overflow-hidden">
       {/* editorial header */}
       <ScrollReveal>
         <header className="mb-10 sm:mb-14">
@@ -48,10 +55,12 @@ export default function Skills() {
             style={{ fontSize: 'clamp(24px,3vw,40px)' }}>
             what I bring
           </span>
-          <h2 className="font-display font-semibold text-pink leading-none"
-            style={{ fontSize: 'clamp(48px,10vw,128px)' }}>
+          <motion.h2
+            style={{ x: headX, fontSize: 'clamp(48px,10vw,128px)' }}
+            className="font-display font-semibold text-pink leading-none"
+          >
             skills.
-          </h2>
+          </motion.h2>
         </header>
       </ScrollReveal>
 

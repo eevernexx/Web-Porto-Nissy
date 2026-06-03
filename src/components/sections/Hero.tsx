@@ -33,7 +33,7 @@ function Portrait() {
         alt="Portrait of Anissa Damayanti"
         width={1080}
         height={1350}
-        priority
+        preload
         sizes="(max-width: 768px) 60vw, 23vw"
         className="w-full h-auto select-none pointer-events-none
           drop-shadow-[0_22px_45px_rgba(229,123,168,0.45)]"
@@ -84,7 +84,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
-            className="font-display font-semibold text-pink leading-[0.85]
+            className="font-display font-normal text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
             style={{ fontSize: 'clamp(44px,10.5vw,128px)', ...NAME_3D }}
           >
@@ -95,7 +95,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-            className="font-display font-semibold text-pink leading-[0.85]
+            className="font-display font-normal text-pink leading-[0.85]
               tracking-tight whitespace-nowrap"
             style={{
               fontSize: 'clamp(44px,10.5vw,128px)',

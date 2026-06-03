@@ -15,6 +15,16 @@ export function scrollToSection(target: string) {
   }
 }
 
+/** Freeze the page (used while an overlay/lightbox is open). */
+export function stopScroll() {
+  lenisInstance?.stop()
+}
+
+/** Resume smooth scrolling after an overlay closes. */
+export function startScroll() {
+  lenisInstance?.start()
+}
+
 export function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({

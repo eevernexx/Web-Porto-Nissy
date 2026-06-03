@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
@@ -21,14 +21,22 @@ export default function Statement() {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-15% 0px' })
 
+  // scroll-linked drift: the two lines slide past each other as you scroll
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  const line1X = useTransform(scrollYProgress, [0, 1], [-70, 50])
+  const line2X = useTransform(scrollYProgress, [0, 1], [70, -50])
+
   return (
-    <section ref={ref} className="px-6 sm:px-10 lg:px-14 py-16 sm:py-28">
+    <section ref={ref} className="px-6 sm:px-10 lg:px-14 py-16 sm:py-28 overflow-hidden">
       <h2
         className="font-punch font-black text-left text-[#B9B0A0]"
         style={{ fontSize: 'clamp(30px,7vw,96px)', lineHeight: 0.92 }}
       >
         {/* line 1: "it's not just designing," */}
-        <span className="block">
+        <motion.span className="block" style={{ x: line1X }}>
           {WORDS.slice(0, 4).map((w, i) => (
             <span
               key={i}
@@ -45,9 +53,9 @@ export default function Statement() {
               </motion.span>
             </span>
           ))}
-        </span>
+        </motion.span>
         {/* line 2: "it's vibing with visuals." */}
-        <span className="block">
+        <motion.span className="block" style={{ x: line2X }}>
           {WORDS.slice(4).map((w, i) => (
             <span
               key={i}
@@ -64,7 +72,7 @@ export default function Statement() {
               </motion.span>
             </span>
           ))}
-        </span>
+        </motion.span>
       </h2>
     </section>
   )

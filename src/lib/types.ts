@@ -3,6 +3,8 @@ export interface Project {
   title: string
   category: string
   image: string
+  /** short line shown in the preview lightbox */
+  blurb?: string
   span?: 'full' | 'half'
 }
 

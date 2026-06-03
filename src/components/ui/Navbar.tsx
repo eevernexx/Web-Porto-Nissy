@@ -50,9 +50,9 @@ export default function Navbar() {
       <div
         className="relative flex items-center justify-between sm:justify-center
           gap-1 sm:gap-1.5 rounded-full px-2 py-2 sm:px-2.5
-          border border-white/50 bg-white/25
-          backdrop-blur-xl backdrop-saturate-150
-          shadow-[0_8px_30px_rgba(39,35,32,0.14),inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-1px_2px_rgba(255,255,255,0.25)]"
+          border border-white/40 bg-white/12
+          backdrop-blur-[6px] backdrop-saturate-[1.7] backdrop-brightness-[1.04]
+          shadow-[0_8px_30px_rgba(39,35,32,0.12),inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_2px_rgba(255,255,255,0.2)]"
       >
         {/* specular top sheen — the wet-glass highlight */}
         <span

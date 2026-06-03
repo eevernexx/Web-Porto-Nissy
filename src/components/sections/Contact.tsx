@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import MagneticButton from '@/components/ui/MagneticButton'
 import { PROFILE } from '@/lib/data'
@@ -41,8 +42,18 @@ export default function Contact() {
 
           {/* right column: sticky note (gradient border, no pseudo needed) */}
           <div className="flex justify-center md:justify-end">
-            <div className="rotate-[-2deg] rounded-sm bg-gradient-to-br
-              from-pink to-pink-deep p-[3px] shadow-2xl max-w-sm">
+            <motion.div
+              initial={{ rotate: -2 }}
+              animate={{ rotate: -2, y: [0, -12, 0] }}
+              transition={{
+                duration: 6.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              whileHover={{ rotate: 0, scale: 1.03 }}
+              className="rounded-sm bg-gradient-to-br
+              from-pink to-pink-deep p-[3px] shadow-2xl max-w-sm"
+            >
               <div className="bg-white rounded-sm p-7 sm:p-9">
                 <p className="font-hand text-ink leading-snug"
                   style={{ fontSize: 'clamp(22px,3vw,32px)' }}>
@@ -55,7 +66,7 @@ export default function Contact() {
                   xx, Anissa
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </ScrollReveal>
