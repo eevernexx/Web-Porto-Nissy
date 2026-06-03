@@ -54,7 +54,7 @@ export default function MusicToggle() {
     <>
       <audio
         ref={audioRef}
-        src="/media/someone-to-stay.mp3"
+        src="/media/gameboy.mp3"
         loop
         preload="auto"
       />
