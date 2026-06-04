@@ -16,7 +16,7 @@ const NAME_FLAT = {
 function Portrait() {
   return (
     <motion.div
-      style={{ width: 'clamp(178px,21vw,296px)' }}
+      style={{ width: 'clamp(220px,26vw,380px)' }}
       animate={{ y: [0, -12, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
     >
@@ -26,7 +26,7 @@ function Portrait() {
         width={1080}
         height={1350}
         preload
-        sizes="(max-width: 768px) 60vw, 23vw"
+        sizes="(max-width: 768px) 70vw, 26vw"
         className="w-full h-auto select-none pointer-events-none
           drop-shadow-[0_22px_45px_rgba(229,123,168,0.45)]"
       />
@@ -99,11 +99,13 @@ export default function Hero() {
           </motion.h1>
         </motion.div>
 
-        {/* portrait: parallax (outer) + entrance/tilt (middle) + float (inner) */}
+        {/* portrait: parallax (outer) + entrance/tilt (middle) + float (inner)
+            on desktop it spans the name block height and centers so the photo
+            sits level with the ANISSA DAMAYANTI lines */}
         <motion.div
           style={{ y: portraitY }}
-          className="mt-10 md:mt-0 md:absolute md:top-0 md:right-0 md:z-20
-            flex justify-center md:block"
+          className="mt-10 md:mt-0 md:absolute md:inset-y-0 md:right-0 md:z-20
+            flex justify-center md:items-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 30, rotate: 0 }}
